@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="hexo," />
+  <meta name="keywords" content="爬虫,Python,代理IP," />
 
 
 
@@ -87,16 +87,16 @@
 
 
 
-<meta name="description" content="以next主题为例，我们需要修改一处代码和配置文件，在next主题目录下搜索“fonts.googleapis.com”，在_config.yaf下加上我们自己的字体host,然后在external-fonts.swig使用这个配置的地方做一些修改，最后就是下载fonts.googleapis.com对应的字体文件放到我们可以访问到的地方就可以了。">
+<meta name="description" content="使用Python爬取代理IP， 爬取的代理IP来源网站一个是国内的一个是国外的，注意爬取国外的需要翻墙，如无法翻墙可选择注释爬取国外的相关代码, 使用了两个第三方库requests和BeautifulSoup4，简单说明一下，requests库可以更方便操作HTTP请求,BeautifulSoup4库用来解析HTML，类似于JavaScript操作DOM一样方便，免去正则匹配的繁琐12345678">
 <meta property="og:type" content="article">
-<meta property="og:title" content="解决hexo引用googleapis导致墙内页面加载慢">
-<meta property="og:url" content="http://yoursite.com/2017/03/10/解决hexo引用googleapis导致墙内页面加载慢/index.html">
+<meta property="og:title" content="Python实现简易爬虫">
+<meta property="og:url" content="http://yoursite.com/2017/03/22/Python实现简易爬虫/index.html">
 <meta property="og:site_name" content="sohow">
-<meta property="og:description" content="以next主题为例，我们需要修改一处代码和配置文件，在next主题目录下搜索“fonts.googleapis.com”，在_config.yaf下加上我们自己的字体host,然后在external-fonts.swig使用这个配置的地方做一些修改，最后就是下载fonts.googleapis.com对应的字体文件放到我们可以访问到的地方就可以了。">
-<meta property="og:updated_time" content="2017-03-10T09:54:09.624Z">
+<meta property="og:description" content="使用Python爬取代理IP， 爬取的代理IP来源网站一个是国内的一个是国外的，注意爬取国外的需要翻墙，如无法翻墙可选择注释爬取国外的相关代码, 使用了两个第三方库requests和BeautifulSoup4，简单说明一下，requests库可以更方便操作HTTP请求,BeautifulSoup4库用来解析HTML，类似于JavaScript操作DOM一样方便，免去正则匹配的繁琐12345678">
+<meta property="og:updated_time" content="2017-03-22T09:30:04.348Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="解决hexo引用googleapis导致墙内页面加载慢">
-<meta name="twitter:description" content="以next主题为例，我们需要修改一处代码和配置文件，在next主题目录下搜索“fonts.googleapis.com”，在_config.yaf下加上我们自己的字体host,然后在external-fonts.swig使用这个配置的地方做一些修改，最后就是下载fonts.googleapis.com对应的字体文件放到我们可以访问到的地方就可以了。">
+<meta name="twitter:title" content="Python实现简易爬虫">
+<meta name="twitter:description" content="使用Python爬取代理IP， 爬取的代理IP来源网站一个是国内的一个是国外的，注意爬取国外的需要翻墙，如无法翻墙可选择注释爬取国外的相关代码, 使用了两个第三方库requests和BeautifulSoup4，简单说明一下，requests库可以更方便操作HTTP请求,BeautifulSoup4库用来解析HTML，类似于JavaScript操作DOM一样方便，免去正则匹配的繁琐12345678">
 
 
 
@@ -124,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/03/10/解决hexo引用googleapis导致墙内页面加载慢/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/22/Python实现简易爬虫/"/>
 
 
 
 
 
-  <title> 解决hexo引用googleapis导致墙内页面加载慢 | sohow </title>
+  <title> Python实现简易爬虫 | sohow </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -249,7 +249,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/10/解决hexo引用googleapis导致墙内页面加载慢/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/22/Python实现简易爬虫/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sohow">
@@ -270,7 +270,7 @@
             
             
               
-                解决hexo引用googleapis导致墙内页面加载慢
+                Python实现简易爬虫
               
             
           </h1>
@@ -285,8 +285,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-10T17:18:09+08:00">
-                2017-03-10
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-22T17:17:45+08:00">
+                2017-03-22
               </time>
             
 
@@ -304,8 +304,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/03/10/解决hexo引用googleapis导致墙内页面加载慢/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/10/解决hexo引用googleapis导致墙内页面加载慢/" itemprop="commentCount"></span>
+                <a href="/2017/03/22/Python实现简易爬虫/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/22/Python实现简易爬虫/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -331,7 +331,7 @@
       
 
       
-        <p>  以next主题为例，我们需要修改一处代码和配置文件，<br>在next主题目录下搜索“fonts.googleapis.com”，在_config.yaf下加上我们自己的字体host,<br>然后在external-fonts.swig使用这个配置的地方做一些修改，<br>最后就是下载fonts.googleapis.com对应的字体文件放到我们可以访问到的地方就可以了。  </p>
+        <p>使用Python爬取代理IP， 爬取的代理IP来源网站一个是国内的一个是国外的，注意爬取国外的需要翻墙，<br>如无法翻墙可选择注释爬取国外的相关代码, 使用了两个第三方库requests和BeautifulSoup4，<br>简单说明一下，requests库可以更方便操作HTTP请求,<br>BeautifulSoup4库用来解析HTML，类似于JavaScript操作DOM一样方便，免去正则匹配的繁琐<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/python</span></div><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> json</div><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Spider</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_ips</span><span class="params">(self, url, table_id)</span>:</span></div><div class="line">        headers = &#123;<span class="string">'user-agent'</span>: <span class="string">'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.90 Safari/537.36'</span>&#125;</div><div class="line">        html = requests.get(url, headers=headers)</div><div class="line">        soup = BeautifulSoup(html.text, <span class="string">'html.parser'</span>)</div><div class="line">        table = soup.find(id=table_id)</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> table:</div><div class="line">            <span class="keyword">return</span> []</div><div class="line">        tbody = table.find(<span class="string">'tbody'</span>)</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> tbody:</div><div class="line">            tbody = table</div><div class="line">        ips = []</div><div class="line">        <span class="keyword">for</span> tr <span class="keyword">in</span> tbody.find_all(<span class="string">'tr'</span>):</div><div class="line">            ip = []</div><div class="line">            <span class="keyword">for</span> td <span class="keyword">in</span> tr.find_all(<span class="string">'td'</span>):</div><div class="line">                ip.append(td.text)</div><div class="line">            <span class="keyword">if</span> len(ip):</div><div class="line">                ips.append(ip)</div><div class="line">        <span class="keyword">return</span> ips</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_sslproxies</span><span class="params">(self)</span>:</span></div><div class="line">        url = <span class="string">'http://www.sslproxies.org/'</span></div><div class="line">        table_id = <span class="string">"proxylisttable"</span></div><div class="line">        <span class="keyword">return</span> self.get_ips(url, table_id)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_xicidaili</span><span class="params">(self)</span>:</span></div><div class="line">        url = <span class="string">'http://www.xicidaili.com/wn/'</span></div><div class="line">        table_id = <span class="string">"ip_list"</span></div><div class="line">        <span class="keyword">return</span> self.get_ips(url, table_id)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">write_file</span><span class="params">(self, str)</span>:</span></div><div class="line">        fp = open(<span class="string">'ips.txt'</span>, <span class="string">'w+'</span>)</div><div class="line">        fp.write(str)</div><div class="line">        fp.close()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></div><div class="line">        sslproxies = self.get_sslproxies()</div><div class="line">        xicidaili = self.get_xicidaili()</div><div class="line">        ips = &#123;&#125;</div><div class="line">        ips[<span class="string">'sslproxies'</span>] = sslproxies</div><div class="line">        ips[<span class="string">'xicidaili'</span>] = xicidaili</div><div class="line">        ips = json.dumps(ips)</div><div class="line">        self.write_file(ips)</div><div class="line"></div><div class="line">spider = Spider()</div><div class="line">spider.run()</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -382,7 +382,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" rel="tag"># hexo</a>
+            <a href="/tags/爬虫/" rel="tag"># 爬虫</a>
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/代理IP/" rel="tag"># 代理IP</a>
           
         </div>
       
@@ -395,8 +399,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/10/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2017/03/20/转载入门教程/" rel="next" title="转载入门教程">
+                <i class="fa fa-chevron-left"></i> 转载入门教程
               </a>
             
           </div>
@@ -405,8 +409,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/15/使用coding-net解决百度爬虫无法抓取githubpage/" rel="prev" title="使用coding.net解决百度爬虫无法抓取githubpage">
-                使用coding.net解决百度爬虫无法抓取githubpage <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/22/PHP实现爬虫爬取豆瓣数据/" rel="prev" title="PHP实现爬虫爬取豆瓣数据">
+                PHP实现爬虫爬取豆瓣数据 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -433,8 +437,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/03/10/解决hexo引用googleapis导致墙内页面加载慢/"
-           data-title="解决hexo引用googleapis导致墙内页面加载慢" data-url="http://yoursite.com/2017/03/10/解决hexo引用googleapis导致墙内页面加载慢/">
+      <div class="ds-thread" data-thread-key="2017/03/22/Python实现简易爬虫/"
+           data-title="Python实现简易爬虫" data-url="http://yoursite.com/2017/03/22/Python实现简易爬虫/">
       </div>
     
   </div>

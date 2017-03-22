@@ -106,7 +106,7 @@
     motion: true,
     duoshuo: {
       userId: '0',
-      author: 'sohow'
+      author: 'Author'
     },
     algolia: {
       applicationID: '',
@@ -194,7 +194,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -204,7 +204,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -237,6 +237,399 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/22/PHP封装HTTP操作类支持POST和GET/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sohow">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="sohow">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/22/PHP封装HTTP操作类支持POST和GET/" itemprop="url">
+                  PHP封装HTTP操作类支持POST和GET
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-22T17:30:56+08:00">
+                2017-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/22/PHP封装HTTP操作类支持POST和GET/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/22/PHP封装HTTP操作类支持POST和GET/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>PHP封装HTTP操作类支持POST和GET<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Helper_Http</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">get</span><span class="params">($url, $header = array<span class="params">()</span>,&amp;$setcookie = <span class="string">''</span>, $proxy = <span class="string">''</span>)</span></span></div><div class="line">    &#123;</div><div class="line">        $ch = curl_init();</div><div class="line">        $needheader = <span class="keyword">empty</span>($setcookie) ? <span class="number">0</span> : <span class="number">1</span>;</div><div class="line">        $opt = <span class="keyword">array</span>(</div><div class="line">            CURLOPT_URL =&gt; $url,</div><div class="line">            CURLOPT_SSL_VERIFYPEER =&gt; <span class="keyword">false</span>,</div><div class="line">            CURLOPT_SSL_VERIFYHOST =&gt; <span class="keyword">false</span>,</div><div class="line">            CURLOPT_RETURNTRANSFER =&gt; <span class="number">1</span>,</div><div class="line">            CURLOPT_FOLLOWLOCATION =&gt; <span class="number">0</span>,</div><div class="line">            CURLOPT_HEADER=&gt;$needheader</div><div class="line">        );</div><div class="line">        !<span class="keyword">empty</span>($proxy) &amp;&amp; $opt[CURLOPT_PROXY] = $proxy;</div><div class="line">        <span class="comment">//$header=array('Content-type: text/plain', 'Content-length: 100')</span></div><div class="line">        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);</div><div class="line">        curl_setopt_array($ch, $opt);</div><div class="line">        $result = curl_exec($ch);</div><div class="line"></div><div class="line">        <span class="keyword">if</span> ($needheader == <span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">list</span>($header, $body) = explode(<span class="string">"\r\n\r\n"</span>, $result, <span class="number">2</span>);</div><div class="line">            preg_match_all(<span class="string">'/Set-Cookie:(.*);/iU'</span>, $header, $str);</div><div class="line">            <span class="keyword">if</span> (!<span class="keyword">empty</span>($str[<span class="number">1</span>])) &#123;</div><div class="line">                $setcookie = implode(<span class="string">'; '</span>, $str[<span class="number">1</span>]) . <span class="string">";"</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> $body;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> $result;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">post</span><span class="params">($url, $data, $header = array<span class="params">()</span>,&amp;$setcookie = <span class="string">''</span>, $proxy = <span class="string">''</span>)</span></span></div><div class="line">    &#123;</div><div class="line">        $ch = curl_init();</div><div class="line">        $needheader = <span class="keyword">empty</span>($setcookie) ? <span class="number">0</span> : <span class="number">1</span>;</div><div class="line">        $opt = <span class="keyword">array</span>(</div><div class="line">            CURLOPT_SSL_VERIFYPEER =&gt; <span class="keyword">false</span>,</div><div class="line">            CURLOPT_SSL_VERIFYHOST =&gt; <span class="keyword">false</span>,</div><div class="line">            CURLOPT_RETURNTRANSFER =&gt; <span class="number">1</span>,</div><div class="line">            CURLOPT_POST =&gt; <span class="number">1</span>,</div><div class="line">            CURLOPT_POSTFIELDS =&gt; $data,</div><div class="line">            CURLOPT_URL =&gt; $url,</div><div class="line">            CURLOPT_FOLLOWLOCATION=&gt;<span class="number">0</span>,</div><div class="line">            CURLOPT_HEADER=&gt;$needheader</div><div class="line">        );</div><div class="line"></div><div class="line">        !<span class="keyword">empty</span>($proxy) &amp;&amp; $opt[CURLOPT_PROXY] = $proxy;</div><div class="line">        <span class="comment">//$header=array('Content-type: text/plain', 'Content-length: 100')</span></div><div class="line">        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);</div><div class="line">        curl_setopt_array($ch, $opt);</div><div class="line">        $result = curl_exec($ch);</div><div class="line"></div><div class="line">        <span class="keyword">if</span> ($needheader == <span class="number">1</span>) &#123;</div><div class="line">            <span class="keyword">list</span>($header, $body) = explode(<span class="string">"\r\n\r\n"</span>, $result, <span class="number">2</span>);</div><div class="line">            preg_match_all(<span class="string">'/Set-Cookie: (.*;)/iU'</span>, $header, $str);</div><div class="line">            <span class="keyword">if</span> (!<span class="keyword">empty</span>($str[<span class="number">1</span>])) &#123;</div><div class="line">                $setcookie = implode(<span class="string">'; '</span>, $str[<span class="number">1</span>]) . <span class="string">";"</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> $body;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> $result;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/22/PHP实现爬虫爬取豆瓣数据/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sohow">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="sohow">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/22/PHP实现爬虫爬取豆瓣数据/" itemprop="url">
+                  PHP实现爬虫爬取豆瓣数据
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-22T17:18:19+08:00">
+                2017-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/22/PHP实现爬虫爬取豆瓣数据/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/22/PHP实现爬虫爬取豆瓣数据/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>PHP实现爬虫爬取豆瓣数据，由于豆瓣有单个IP频次限制，所以使用了代理IP，代理IP的来源于网络公开免费的代理，<br>另一篇文章介绍了使用Python爬取代理IP, 代码中的Helper_Http参见另外一篇文章<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="keyword">include_once</span> <span class="string">"http.php"</span>;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Douban</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">get_list</span><span class="params">($tag)</span></span></div><div class="line">    &#123;</div><div class="line">        $url = <span class="string">'https://movie.douban.com/j/search_subjects'</span>;</div><div class="line">        $page_limit = <span class="number">500</span>;</div><div class="line">        $page_start = <span class="number">0</span>;</div><div class="line">        $param = <span class="keyword">array</span>(</div><div class="line">            <span class="string">'type'</span> =&gt; <span class="string">'tv'</span>,</div><div class="line">            <span class="string">'sort'</span>=&gt;<span class="string">'time'</span>,</div><div class="line">            <span class="string">'tag'</span>=&gt; $tag,</div><div class="line">            <span class="string">'page_limit'</span>=&gt;<span class="number">500</span>,</div><div class="line">            <span class="string">'page_start'</span>=&gt;<span class="number">0</span></div><div class="line">        );</div><div class="line"></div><div class="line">        $list = <span class="keyword">array</span>();</div><div class="line">        <span class="keyword">do</span> &#123;</div><div class="line">            $result = <span class="keyword">self</span>::http_get($url . <span class="string">'?'</span> . http_build_query($param));</div><div class="line">            $data = json_decode($result, <span class="keyword">true</span>);</div><div class="line">            $page_start += $page_limit;</div><div class="line">            $param[<span class="string">'page_start'</span>] = $page_start;</div><div class="line">            <span class="keyword">if</span> (is_array($data[<span class="string">'subjects'</span>])) &#123;</div><div class="line">                <span class="keyword">foreach</span> ($data[<span class="string">'subjects'</span>] <span class="keyword">as</span> $subject) &#123;</div><div class="line">                    $list[] = $subject[<span class="string">'id'</span>];</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">while</span> (!<span class="keyword">empty</span>($data[<span class="string">'subjects'</span>]));</div><div class="line"></div><div class="line">        <span class="keyword">return</span> $list;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">get_info</span><span class="params">($id)</span></span></div><div class="line">    &#123;</div><div class="line">        $url = <span class="string">'https://api.douban.com/v2/movie/subject/'</span>;</div><div class="line">        $result = <span class="keyword">self</span>::http_get($url . $id);</div><div class="line">        <span class="keyword">return</span> $result;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">http_get</span><span class="params">($url, $try=<span class="number">10</span>)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">static</span> $proxy = <span class="string">''</span>;</div><div class="line">        <span class="keyword">if</span> ($try &lt;= <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="string">''</span>;</div><div class="line">        &#125;</div><div class="line">        $cookie = <span class="string">''</span>;</div><div class="line">        $result = Helper_Http::get($url, <span class="keyword">array</span>(), $cookie, $proxy);</div><div class="line">        $data = json_decode($result, <span class="keyword">true</span>);</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">isset</span>($data[<span class="string">'msg'</span>]) &amp;&amp; $data[<span class="string">'code'</span>] == <span class="number">112</span>) &#123;</div><div class="line">            $proxy = <span class="keyword">self</span>::get_proxy();</div><div class="line">            <span class="keyword">return</span> <span class="keyword">self</span>::http_get($url, $try<span class="number">-1</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> $result;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">get_proxy</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="comment">//http://www.sslproxies.org/</span></div><div class="line">        <span class="comment">//http://www.xicidaili.com/</span></div><div class="line">        <span class="keyword">static</span> $proxys = <span class="keyword">array</span>(</div><div class="line">            <span class="string">'27.54.185.16:3128'</span>,</div><div class="line">            <span class="string">'217.33.216.114:8080'</span>,</div><div class="line">            <span class="string">'144.217.248.180:8080'</span>,</div><div class="line">            <span class="string">'185.107.80.44:3128'</span>,</div><div class="line">            <span class="string">'200.229.202.214:8080'</span>,</div><div class="line">            <span class="string">'51.141.32.241:8080'</span>,</div><div class="line">            <span class="string">'94.177.243.78:8080'</span>,</div><div class="line">            <span class="string">'52.58.9.56:8083'</span>,</div><div class="line">            <span class="string">'201.16.140.120:8080'</span>,</div><div class="line">            <span class="string">'77.73.66.26:3128'</span>,</div><div class="line">            <span class="string">'103.14.8.239:8080'</span>,</div><div class="line">            <span class="string">'51.15.46.137:80'</span>,</div><div class="line">            <span class="string">'192.34.56.155:80'</span>,</div><div class="line">            <span class="string">'54.87.138.13:8083'</span></div><div class="line">        );</div><div class="line">        <span class="keyword">static</span> $cur = <span class="number">0</span>;</div><div class="line"></div><div class="line">        $proxy = $proxys[$cur];</div><div class="line">        $cur = ($cur + <span class="number">1</span>) % count($proxys);</div><div class="line">        <span class="keyword">return</span> $proxy;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">run</span><span class="params">()</span></span></div><div class="line">	&#123;</div><div class="line">		$tags = <span class="keyword">array</span>(</div><div class="line">			<span class="string">'国产剧'</span>,</div><div class="line">			<span class="string">'综艺'</span></div><div class="line">		);</div><div class="line"></div><div class="line">		$ids = <span class="keyword">array</span>();</div><div class="line">		<span class="keyword">foreach</span> ($tags <span class="keyword">as</span> $tag) &#123;</div><div class="line">			$list = <span class="keyword">self</span>::get_list($tag);</div><div class="line">			$ids = array_merge($ids, $list);</div><div class="line">		&#125;</div><div class="line">		$ids = array_flip($ids);</div><div class="line">		<span class="keyword">foreach</span> ($ids <span class="keyword">as</span> $id=&gt;$val) &#123;</div><div class="line">			$info = <span class="keyword">self</span>::get_info($id);</div><div class="line">			<span class="keyword">echo</span> $info . <span class="string">"\n"</span>;</div><div class="line">			sleep(<span class="number">2</span>);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">Douban::run();</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/22/Python实现简易爬虫/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sohow">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="sohow">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/22/Python实现简易爬虫/" itemprop="url">
+                  Python实现简易爬虫
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-22T17:17:45+08:00">
+                2017-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/22/Python实现简易爬虫/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/22/Python实现简易爬虫/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>使用Python爬取代理IP， 爬取的代理IP来源网站一个是国内的一个是国外的，注意爬取国外的需要翻墙，<br>如无法翻墙可选择注释爬取国外的相关代码, 使用了两个第三方库requests和BeautifulSoup4，<br>简单说明一下，requests库可以更方便操作HTTP请求,<br>BeautifulSoup4库用来解析HTML，类似于JavaScript操作DOM一样方便，免去正则匹配的繁琐<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/python</span></div><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> json</div><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Spider</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_ips</span><span class="params">(self, url, table_id)</span>:</span></div><div class="line">        headers = &#123;<span class="string">'user-agent'</span>: <span class="string">'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.90 Safari/537.36'</span>&#125;</div><div class="line">        html = requests.get(url, headers=headers)</div><div class="line">        soup = BeautifulSoup(html.text, <span class="string">'html.parser'</span>)</div><div class="line">        table = soup.find(id=table_id)</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> table:</div><div class="line">            <span class="keyword">return</span> []</div><div class="line">        tbody = table.find(<span class="string">'tbody'</span>)</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> tbody:</div><div class="line">            tbody = table</div><div class="line">        ips = []</div><div class="line">        <span class="keyword">for</span> tr <span class="keyword">in</span> tbody.find_all(<span class="string">'tr'</span>):</div><div class="line">            ip = []</div><div class="line">            <span class="keyword">for</span> td <span class="keyword">in</span> tr.find_all(<span class="string">'td'</span>):</div><div class="line">                ip.append(td.text)</div><div class="line">            <span class="keyword">if</span> len(ip):</div><div class="line">                ips.append(ip)</div><div class="line">        <span class="keyword">return</span> ips</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_sslproxies</span><span class="params">(self)</span>:</span></div><div class="line">        url = <span class="string">'http://www.sslproxies.org/'</span></div><div class="line">        table_id = <span class="string">"proxylisttable"</span></div><div class="line">        <span class="keyword">return</span> self.get_ips(url, table_id)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_xicidaili</span><span class="params">(self)</span>:</span></div><div class="line">        url = <span class="string">'http://www.xicidaili.com/wn/'</span></div><div class="line">        table_id = <span class="string">"ip_list"</span></div><div class="line">        <span class="keyword">return</span> self.get_ips(url, table_id)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">write_file</span><span class="params">(self, str)</span>:</span></div><div class="line">        fp = open(<span class="string">'ips.txt'</span>, <span class="string">'w+'</span>)</div><div class="line">        fp.write(str)</div><div class="line">        fp.close()</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></div><div class="line">        sslproxies = self.get_sslproxies()</div><div class="line">        xicidaili = self.get_xicidaili()</div><div class="line">        ips = &#123;&#125;</div><div class="line">        ips[<span class="string">'sslproxies'</span>] = sslproxies</div><div class="line">        ips[<span class="string">'xicidaili'</span>] = xicidaili</div><div class="line">        ips = json.dumps(ips)</div><div class="line">        self.write_file(ips)</div><div class="line"></div><div class="line">spider = Spider()</div><div class="line">spider.run()</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -284,7 +677,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">sohow</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-20T13:43:08+08:00">
                 2017-03-20
@@ -415,7 +808,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">sohow</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-20T11:00:38+08:00">
                 2017-03-20
@@ -546,7 +939,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">sohow</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-15T10:20:22+08:00">
                 2017-03-15
@@ -677,7 +1070,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">sohow</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-10T17:18:09+08:00">
                 2017-03-10
@@ -808,7 +1201,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">sohow</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-10T10:33:37+08:00">
                 2017-03-10
@@ -946,8 +1339,8 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">5</span>
-                <span class="site-state-item-name">Artikel</span>
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -959,8 +1352,8 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">5</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -1030,7 +1423,7 @@
 
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
