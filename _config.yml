@@ -7,12 +7,12 @@ title: sohow
 subtitle:
 description:
 author: sohow
-language:
+language: zh-Hans
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://sohow.tk
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -73,3 +73,7 @@ deploy:
     github: git@github.com:sohow/sohow.github.io.git,master
     coding: git@git.coding.net:sohow/sohow.coding.me.git,master
 duoshuo_shortname: sohow
+sitemap:
+        path: sitemap.xml
+baidusitemap:
+        path: baidusitemap.xml
