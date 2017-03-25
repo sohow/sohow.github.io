@@ -72,7 +72,6 @@ deploy:
   repo:
     github: git@github.com:sohow/sohow.github.io.git,master
     coding: git@git.coding.net:sohow/sohow.coding.me.git,master
-duoshuo_shortname: sohow
 sitemap:
         path: sitemap.xml
 baidusitemap:
