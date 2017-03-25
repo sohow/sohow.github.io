@@ -12,7 +12,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: sohow.cc
+url: https://sohow.cc
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -25,7 +25,7 @@ archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
-skip_render:
+skip_render: [baidu_verify_o0Wf3Zq7Zc.html, googleb35b6f0901357a77.html]
 
 # Writing
 new_post_name: :title.md # File name of new posts
