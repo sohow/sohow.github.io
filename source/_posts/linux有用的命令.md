@@ -1,0 +1,65 @@
+---
+title: linux有用的命令
+date: 2017-05-12 11:17:25
+tags: linux
+---
+## lsattr和chattr
+这两个命令是用来查看和改变文件、目录属性的，与chmod这个命令相比，chmod只是改变文件的读写、执行权限，更底层的属性控制是由chattr来改变的
+### 查看文件属性
+``` shell
+lsattr /etc/sudoers
+```
+### 设置文件只读属性
+``` shell
+chattr -i /etc/sudoers
+chattr +i /etc/sudoers
+```
+
+## nc
+``` shell
+-v  显示指令执行过程。
+-w  <超时秒数>   设置等待连线的时间。
+-u  表示使用UDP协议
+-z  使用0输入/输出模式 (用来告诉 nc 报告开放的端口，而不是启动连接)
+```
+### 端口扫描
+``` shell
+ nc -v -w 10 -z 192.168.0.100 8080  
+ nc -w 2 -z 192.168.0.100 1-65535 
+```
+### 传输文件
+* 监听
+``` shell
+nc -v -l -p 4444 > demo.txt
+```
+* 连接
+``` shell
+nc -v 192.168.0.100 4444 < demo.txt
+```
+
+## find
+### 查找目录下的所有文件中是否含有某个字符串 
+``` shell
+find .|xargs grep -ri "IBM" 
+```
+### 查找目录下的所有文件中是否含有某个字符串,并且只打印出文件名 
+``` shell
+find .|xargs grep -ri "IBM" -l 
+```
+### 查找文件
+``` shell
+find . -name "*.txt"                    ;按照文件名
+find . -empty                           ;查找空文件
+find . -user himanshu -name "*.txt"     ;指定用户
+find . -szie -1024c + 256c              ;指定文件大小范围>256字节<1024字节
+```
+
+## ll
+### 文件排序
+``` shell
+ll -S
+```
+### 统计文件个数
+``` shell
+ll | grep "^-" | wc -l
+```
