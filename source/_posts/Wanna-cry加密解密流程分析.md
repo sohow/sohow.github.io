@@ -11,7 +11,7 @@ tags: 加密解密
 * 对原始文件F使用key2进行AES加密得F.encrypt
 * 删除原始文件，把key2和F.encrypt写入新文件
 
-##解密流程
+## 解密流程
 * 把B.private.encypt发给作者
 * 作者使用A.private将B.private.encypt进行RSA解密还原成B.private
 * 从被加密的文件中提取key2，使用B.private对key进行RSA解密还原成key
