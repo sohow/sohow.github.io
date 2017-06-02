@@ -63,3 +63,16 @@ ll -S
 ``` shell
 ll | grep "^-" | wc -l
 ```
+
+## notify-send
+* 每周4下午3点显示一个提醒弹窗
+``` shell
+00 15 * * 4 export DISPLAY=:0.0 && sudo -u zongwen1 /usr/bin/notify-send "[自定义提醒]" "该写周报了！"
+```
+* mac版弹窗命令
+``` shell
+osascript -e 'display notification "该写周报了！" with title "[自定义提醒]"'
+```
+
+## zssh
+* zssh 配合 sz和rz 可以方便地通过shell传输文件
