@@ -76,3 +76,22 @@ osascript -e 'display notification "该写周报了！" with title "[自定义�
 
 ## zssh
 * zssh 配合 sz和rz 可以方便地通过shell传输文件
+
+## alias
+设置命令别名，可缩短命令长度
+例如
+``` shell
+sudo vim /home/当前用户/.bashrc     ;对当前用户有效
+sudo vim /etc/profile              ;全局用户有效
+source /etc/profile
+alias sqlmap=’python /path/sqlmap.py’
+```
+
+## sqlmap
+* 需要python环境，下载后即可使用了
+
+``` shell
+git clone https://github.com/sqlmapproject/sqlmap.git
+cd sqlmap
+python sqlmap.py -u "http://192.168.0.1/?id=1" ;建议使用alias设置别名
+```
