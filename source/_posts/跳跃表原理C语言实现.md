@@ -5,7 +5,7 @@ tags: [C语言,算法]
 ---
 ## 跳跃表和传统链表图示
 * 可以简单理解跳跃表是在传统顺序链表上通过给节点增加额外（随机个数）指针来做索引，
-从而实现类似于折半查询的思想，其效率可以媲美红黑树。
+其思想类似于折半查询的思想，其效率可以媲美红黑树。
 ![](/images/skip_list.png)
 
 ## 跳跃表C语言实现
@@ -87,6 +87,7 @@ void insert(Skiplist * list, typekey key, typevalue val)
         while ((q = p->next[i]) && q->key < key) {
             p = q;
         }
+        ;注意可插入相同key的节点
         if (i <= level -1) {
             if (pnode == NULL) {
                 pnode = create_node(level);
@@ -104,7 +105,7 @@ void delete_node(Skiplist *list, typekey key)
 {
     Node *q, *p = list->header;
     Node *pnode = NULL;
-
+    ;若有相同key一次只删除一个
     for (int i = list->level - 1; i >= 0 ; --i) {
         while ((q = p->next[i]) && q->key < key) {
             p = q;
