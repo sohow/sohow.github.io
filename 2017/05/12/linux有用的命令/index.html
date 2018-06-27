@@ -1,0 +1,775 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//sohow.cc/css/fonts.css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="linux," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="lsattr和chattr这两个命令是用来查看和改变文件、目录属性的，与chmod这个命令相比，chmod只是改变文件的读写、执行权限，更底层的属性控制是由chattr来改变的
+查看文件属性1lsattr /etc/sudoers
+设置文件只读属性12chattr -i /etc/sudoerschattr +i /etc/sudoers
+nc1234-v  显示指令执行过程。-w  &amp;lt;超时">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux有用的命令">
+<meta property="og:url" content="https://sohow.cc/2017/05/12/linux有用的命令/index.html">
+<meta property="og:site_name" content="sohow">
+<meta property="og:description" content="lsattr和chattr这两个命令是用来查看和改变文件、目录属性的，与chmod这个命令相比，chmod只是改变文件的读写、执行权限，更底层的属性控制是由chattr来改变的
+查看文件属性1lsattr /etc/sudoers
+设置文件只读属性12chattr -i /etc/sudoerschattr +i /etc/sudoers
+nc1234-v  显示指令执行过程。-w  &amp;lt;超时">
+<meta property="og:updated_time" content="2018-06-27T06:21:19.730Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux有用的命令">
+<meta name="twitter:description" content="lsattr和chattr这两个命令是用来查看和改变文件、目录属性的，与chmod这个命令相比，chmod只是改变文件的读写、执行权限，更底层的属性控制是由chattr来改变的
+查看文件属性1lsattr /etc/sudoers
+设置文件只读属性12chattr -i /etc/sudoerschattr +i /etc/sudoers
+nc1234-v  显示指令执行过程。-w  &amp;lt;超时">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://sohow.cc/2017/05/12/linux有用的命令/"/>
+
+
+
+
+
+  <title> linux有用的命令 | sohow </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">sohow</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://sohow.cc/2017/05/12/linux有用的命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sohow">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="sohow">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                linux有用的命令
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-12T11:17:25+08:00">
+                2017-05-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/05/12/linux有用的命令/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="lsattr和chattr"><a href="#lsattr和chattr" class="headerlink" title="lsattr和chattr"></a>lsattr和chattr</h2><p>这两个命令是用来查看和改变文件、目录属性的，与chmod这个命令相比，chmod只是改变文件的读写、执行权限，更底层的属性控制是由chattr来改变的</p>
+<h3 id="查看文件属性"><a href="#查看文件属性" class="headerlink" title="查看文件属性"></a>查看文件属性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lsattr /etc/sudoers</div></pre></td></tr></table></figure>
+<h3 id="设置文件只读属性"><a href="#设置文件只读属性" class="headerlink" title="设置文件只读属性"></a>设置文件只读属性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">chattr -i /etc/sudoers</div><div class="line">chattr +i /etc/sudoers</div></pre></td></tr></table></figure>
+<h2 id="nc"><a href="#nc" class="headerlink" title="nc"></a>nc</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">-v  显示指令执行过程。</div><div class="line">-w  &lt;超时秒数&gt;   设置等待连线的时间。</div><div class="line">-u  表示使用UDP协议</div><div class="line">-z  使用0输入/输出模式 (用来告诉 nc 报告开放的端口，而不是启动连接)</div></pre></td></tr></table></figure>
+<h3 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">nc -v -w 10 -z 192.168.0.100 8080  </div><div class="line">nc -w 2 -z 192.168.0.100 1-65535</div></pre></td></tr></table></figure>
+<h3 id="传输文件"><a href="#传输文件" class="headerlink" title="传输文件"></a>传输文件</h3><ul>
+<li><p>监听</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nc -v -l -p 4444 &gt; demo.txt</div></pre></td></tr></table></figure>
+</li>
+<li><p>连接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nc -v 192.168.0.100 4444 &lt; demo.txt</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><h3 id="查找目录下的所有文件中是否含有某个字符串"><a href="#查找目录下的所有文件中是否含有某个字符串" class="headerlink" title="查找目录下的所有文件中是否含有某个字符串"></a>查找目录下的所有文件中是否含有某个字符串</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find .|xargs grep -ri &quot;IBM&quot;</div></pre></td></tr></table></figure>
+<h3 id="查找目录下的所有文件中是否含有某个字符串-并且只打印出文件名"><a href="#查找目录下的所有文件中是否含有某个字符串-并且只打印出文件名" class="headerlink" title="查找目录下的所有文件中是否含有某个字符串,并且只打印出文件名"></a>查找目录下的所有文件中是否含有某个字符串,并且只打印出文件名</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find .|xargs grep -ri &quot;IBM&quot; -l</div></pre></td></tr></table></figure>
+<h3 id="查找文件"><a href="#查找文件" class="headerlink" title="查找文件"></a>查找文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">find . -name &quot;*.txt&quot;                    ;按照文件名</div><div class="line">find . -empty                           ;查找空文件</div><div class="line">find . -user himanshu -name &quot;*.txt&quot;     ;指定用户</div><div class="line">find . -szie -1024c + 256c              ;指定文件大小范围&gt;256字节&lt;1024字节</div></pre></td></tr></table></figure>
+<h2 id="ll"><a href="#ll" class="headerlink" title="ll"></a>ll</h2><h3 id="文件排序"><a href="#文件排序" class="headerlink" title="文件排序"></a>文件排序</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ll -S</div></pre></td></tr></table></figure>
+<h3 id="统计文件个数"><a href="#统计文件个数" class="headerlink" title="统计文件个数"></a>统计文件个数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ll | grep &quot;^-&quot; | wc -l</div></pre></td></tr></table></figure>
+<h2 id="notify-send"><a href="#notify-send" class="headerlink" title="notify-send"></a>notify-send</h2><ul>
+<li><p>每周4下午3点显示一个提醒弹窗</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">00 15 * * 4 export DISPLAY=:0.0 &amp;&amp; sudo -u zongwen1 /usr/bin/notify-send &quot;[自定义提醒]&quot; &quot;该写周报了！&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>mac版弹窗命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">osascript -e &apos;display notification &quot;该写周报了！&quot; with title &quot;[自定义提醒]&quot;&apos;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="zssh"><a href="#zssh" class="headerlink" title="zssh"></a>zssh</h2><ul>
+<li>zssh 配合 sz和rz 可以方便地通过shell传输文件</li>
+</ul>
+<h2 id="alias"><a href="#alias" class="headerlink" title="alias"></a>alias</h2><p>设置命令别名，可缩短命令长度<br>例如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sudo vim /home/当前用户/.bashrc     ;对当前用户有效</div><div class="line">sudo vim /etc/profile              ;全局用户有效</div><div class="line">source /etc/profile</div><div class="line">alias sqlmap=’python /path/sqlmap.py’</div></pre></td></tr></table></figure></p>
+<h2 id="sqlmap"><a href="#sqlmap" class="headerlink" title="sqlmap"></a>sqlmap</h2><ul>
+<li>需要python环境，下载后即可使用了</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/sqlmapproject/sqlmap.git</div><div class="line">cd sqlmap</div><div class="line">python sqlmap.py -u &quot;http://192.168.0.1/?id=1&quot; ;建议使用alias设置别名</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div></div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat.png" alt="sohow WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="sohow Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/26/HEXO自定义域名使用HTTPS/" rel="next" title="HEXO自定义域名使用HTTPS">
+                <i class="fa fa-chevron-left"></i> HEXO自定义域名使用HTTPS
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/16/Wanna-cry加密解密流程分析/" rel="prev" title="Wanna cry加密解密流程分析">
+                Wanna cry加密解密流程分析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="sohow" />
+          <p class="site-author-name" itemprop="name">sohow</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://qingyu.me" target="_blank" title="青鱼博客">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  青鱼博客
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#lsattr和chattr"><span class="nav-number">1.</span> <span class="nav-text">lsattr和chattr</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看文件属性"><span class="nav-number">1.1.</span> <span class="nav-text">查看文件属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置文件只读属性"><span class="nav-number">1.2.</span> <span class="nav-text">设置文件只读属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nc"><span class="nav-number">2.</span> <span class="nav-text">nc</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#端口扫描"><span class="nav-number">2.1.</span> <span class="nav-text">端口扫描</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#传输文件"><span class="nav-number">2.2.</span> <span class="nav-text">传输文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#find"><span class="nav-number">3.</span> <span class="nav-text">find</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查找目录下的所有文件中是否含有某个字符串"><span class="nav-number">3.1.</span> <span class="nav-text">查找目录下的所有文件中是否含有某个字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查找目录下的所有文件中是否含有某个字符串-并且只打印出文件名"><span class="nav-number">3.2.</span> <span class="nav-text">查找目录下的所有文件中是否含有某个字符串,并且只打印出文件名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查找文件"><span class="nav-number">3.3.</span> <span class="nav-text">查找文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ll"><span class="nav-number">4.</span> <span class="nav-text">ll</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件排序"><span class="nav-number">4.1.</span> <span class="nav-text">文件排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#统计文件个数"><span class="nav-number">4.2.</span> <span class="nav-text">统计文件个数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#notify-send"><span class="nav-number">5.</span> <span class="nav-text">notify-send</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zssh"><span class="nav-number">6.</span> <span class="nav-text">zssh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#alias"><span class="nav-number">7.</span> <span class="nav-text">alias</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sqlmap"><span class="nav-number">8.</span> <span class="nav-text">sqlmap</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sohow</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "3042edd3b9094c85b738513a6bb82ecc",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+</body>
+</html>
