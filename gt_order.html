@@ -1,0 +1,219 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>入馆预约</title>
+    <meta name="theme-color" content="#1c46c0">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no, viewport-fit=cover">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <link href="https://gtweixin.nlc.cn/public/subscribe/css/common.css" type="text/css" rel="stylesheet"/>
+    <link href="https://gtweixin.nlc.cn/public/subscribe/css/swiper.min.css" type="text/css" rel="stylesheet"/>
+    <link href="https://gtweixin.nlc.cn/public/subscribe/css/style.css" type="text/css" rel="stylesheet"/>
+    <link href="https://gtweixin.nlc.cn/public/dropload/dropload.css" type="text/css" rel="stylesheet"/>
+    <script src="https://gtweixin.nlc.cn/public/subscribe/js/jquery.min.js"></script>
+    <script src="https://gtweixin.nlc.cn/public/subscribe/js/swiper.min.js"></script>
+    <script src="https://gtweixin.nlc.cn/public/yeeui/layer/layer.js"></script>
+    <script type="text/javascript" src="https://gtweixin.nlc.cn/public/samaores/js/samao.timebtn.js"></script>
+    <script type="text/javascript" src="https://gtweixin.nlc.cn/public/samaores/js/samao.validate.js"></script>
+    <script src="https://gtweixin.nlc.cn/public/js/sm.valid.js"></script>
+    <script src="https://gtweixin.nlc.cn/public/yeeui/js/yee.js"></script>
+
+</head>
+
+<body>
+
+
+
+<div class="detail">
+    <div class="reswrap">
+        <div class="resmain">
+            <div class="resnotice">
+                <div class="icon"><img src="https://gtweixin.nlc.cn/public/subscribe/images/result-success.png" alt=""></div>
+                <div class="text">已预约，可进入</div>
+                <!--
+                <div class="note">今日第<span style="font-weight: bold; padding: 0px 3px;color: #ff0000;">1</span>次进入</div>
+                -->
+                <div id="now_id" class="note">2022-09-24 09:02:59</div>
+            </div>
+            <div class="resintro">
+                <div class="name">总馆馆区</div>
+                <div class="list">
+                    <div class="item">
+                        <div class="tit">预&nbsp;约&nbsp;编&nbsp;号：</div>
+                        <div class="txt">YY2022092205030</div>
+                    </div>
+
+                    <div class="item">
+                        <div class="tit">预约时间段：</div>
+                        <div class="txt" id="booktime">2022-09-24 9:00-17:00</div>
+                    </div>
+                    <div class="item">
+                        <div class="tit">预&nbsp;约&nbsp;事&nbsp;由：</div>
+                        <div class="txt">阅览/外借服务</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="https://gtweixin.nlc.cn/api/jssdk.html?url=https%3A%2F%2Fgtweixin.nlc.cn%2Fchecking%2Forder.html%3Forder_id%3D1640270"></script>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+<script>
+
+    var title = "国家图书馆";
+    var desc = '入馆预约平台';
+    var link = 'https://gtweixin.nlc.cn/subscribe/';
+    var thumb = 'https://gtweixin.nlc.cn/logo.png';
+
+var DateToformatDate = (date, fmt) => {
+       //按格式返回当前时间
+        if (fmt == '' || fmt == null) {
+            fmt = 'YYYY-MM-DD';
+        }
+        if (date == '' || date == null) {
+            date = new Date();
+        } else {
+            if (Object.prototype.toString.call(date) !== '[object Date]') {
+                date = new Date(date);
+            }
+        }
+        var o = {
+            "M+": date.getMonth() + 1, //月份
+            "D+": date.getDate(), //日
+            "H+": date.getHours(), //时
+            "m+": date.getMinutes(), //分
+            "s+": date.getSeconds(), //秒
+        };
+        if (/(Y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+    };
+var d = new Date();
+d.setDate(d.getDate()-2);
+document.getElementById("booktime").innerText=DateToformatDate(d,"YYYY-MM-DD 9:00-17:00")
+document.getElementById("now_id").innerText=DateToformatDate("","YYYY-MM-DD HH:mm:ss")
+console.log(DateToformatDate("","YYYY年MM月DD日HH:mm"))
+console.log(DateToformatDate("","YYYY-MM-DD HH:mm:ss"))
+
+    window.alert = function (name) {
+        var iframe = document.createElement("IFRAME");
+        iframe.style.display = "none";
+        iframe.setAttribute("src", 'data:text/plain,');
+        document.documentElement.appendChild(iframe);
+        window.frames[0].window.alert(name);
+        iframe.parentNode.removeChild(iframe);
+    };
+
+
+    Yee.ready(function () {
+
+
+        /*  console.log('appId=' + signPackage.appId);
+         console.log('timestamp=' + signPackage.timestamp);
+         console.log('nonceStr=' + signPackage.nonceStr);*/
+        console.log('url=' + signPackage.rawString);
+        //   console.log('signature=' + signPackage.url);
+        wx.config({
+            debug: false,
+            appId: signPackage.appId,
+            timestamp: parseInt(signPackage.timestamp),
+            nonceStr: signPackage.nonceStr,
+            signature: signPackage.signature,
+            jsApiList: [
+                'checkJsApi',
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage',
+                'onMenuShareQQ',
+                'onMenuShareWeibo',
+                'hideOptionMenu',
+                'addCard',
+                'chooseCard'
+            ]
+        });
+
+        wx.ready(function () {
+
+            wx.onMenuShareTimeline({
+                title: title, // 分享标题
+                link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                imgUrl: thumb, // 分享图标
+                success: function () {
+                    // 用户确认分享后执行的回调函数
+                },
+                cancel: function () {
+                }
+            });
+            wx.onMenuShareAppMessage({
+                title: title, // 分享标题
+                desc: desc, // 分享描述
+                link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                imgUrl: thumb, // 分享图标
+                type: '', // 分享类型,music、video或link，不填默认为link
+                dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                success: function () {
+                    // 用户确认分享后执行的回调函数
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+            wx.onMenuShareQQ({
+                title: title, // 分享标题
+                desc: desc, // 分享描述
+                link: link, // 分享链接
+                imgUrl: thumb, // 分享图标
+                success: function () {
+                    // 用户确认分享后执行的回调函数
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+            wx.onMenuShareWeibo({
+                title: title, // 分享标题
+                desc: desc, // 分享描述
+                link: link, // 分享链接
+                imgUrl: thumb, // 分享图标
+                success: function () {
+                    // 用户确认分享后执行的回调函数
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+            wx.onMenuShareQZone({
+                title: title, // 分享标题
+                desc: desc, // 分享描述
+                link: link, // 分享链接
+                imgUrl: thumb, // 分享图标
+                success: function () {
+                    // 用户确认分享后执行的回调函数
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+
+
+        });
+
+
+    })
+
+
+</script>
+<div style="display:none;">
+     <script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=1278862273&web_id=1278862273"></script>
+</div>
+
+</body>
+</html>

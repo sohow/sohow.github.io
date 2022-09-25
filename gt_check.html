@@ -1,0 +1,189 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>入馆预约</title>
+    <meta name="theme-color" content="#1c46c0">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no, viewport-fit=cover">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <link href="https://gtweixin.nlc.cn/public/subscribe/css/common.css" type="text/css" rel="stylesheet"/>
+    <link href="https://gtweixin.nlc.cn/public/subscribe/css/swiper.min.css" type="text/css" rel="stylesheet"/>
+    <link href="https://gtweixin.nlc.cn/public/subscribe/css/style.css" type="text/css" rel="stylesheet"/>
+    <link href="https://gtweixin.nlc.cn/public/dropload/dropload.css" type="text/css" rel="stylesheet"/>
+    <script src="https://gtweixin.nlc.cn/public/subscribe/js/jquery.min.js"></script>
+    <script src="https://gtweixin.nlc.cn/public/subscribe/js/swiper.min.js"></script>
+    <script src="https://gtweixin.nlc.cn/public/yeeui/layer/layer.js"></script>
+    <script type="text/javascript" src="https://gtweixin.nlc.cn/public/samaores/js/samao.timebtn.js"></script>
+    <script type="text/javascript" src="https://gtweixin.nlc.cn/public/samaores/js/samao.validate.js"></script>
+    <script src="https://gtweixin.nlc.cn/public/js/sm.valid.js"></script>
+    <script src="https://gtweixin.nlc.cn/public/yeeui/js/yee.js"></script>
+
+</head>
+
+<body>
+
+
+
+<div class="topimg"><img src="https://gtweixin.nlc.cn/public/subscribe/images/topimg.png" alt=""></div>
+<div class="wrapper">
+    <div class="login">
+        <form method="post" yee-module="ajaxform">
+            <input type="hidden" name="venue" value="46"/>
+            <input type="hidden" name="action" value="login"/>
+            <div class="item" style="padding-top: 20px;">
+                <div class="notice" style="text-align: center;padding: .2rem 0">
+                    <a href="javascript:void(0)" style="font-size: 24px; margin: 0 auto; font-weight: bold;color: #333333;">当前查询号码</a>
+                </div>
+            </div>
+
+            <div class="item" style="padding-top: 0px;">
+                <div class="notice" style="text-align: center;padding: .2rem 0">
+                    <a href="javascript:void(0)" style="font-size: 20px; margin: 0 auto;">136****9691</a>
+                </div>
+            </div>
+
+            <div class="item" style="padding-top: 20px;">
+                <div class="btnbox"><input type="submit" value="查询预约" class="btn">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    $("form").on("success", function (r, ev) {
+
+        window.location.href = 'https://gtweixin.nlc.cn/checking/order.html?order_id=' + ev.data;
+
+    })
+</script>
+
+
+
+<script src="https://gtweixin.nlc.cn/api/jssdk.html?url=https%3A%2F%2Fgtweixin.nlc.cn%2Fchecking%2F%3Fvenue%3D46"></script>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+<script>
+
+    var title = "国家图书馆";
+    var desc = '入馆预约平台';
+    var link = 'https://gtweixin.nlc.cn/subscribe/';
+    var thumb = 'https://gtweixin.nlc.cn/logo.png';
+
+
+    window.alert = function (name) {
+        var iframe = document.createElement("IFRAME");
+        iframe.style.display = "none";
+        iframe.setAttribute("src", 'data:text/plain,');
+        document.documentElement.appendChild(iframe);
+        window.frames[0].window.alert(name);
+        iframe.parentNode.removeChild(iframe);
+    };
+
+
+    Yee.ready(function () {
+
+
+        /*  console.log('appId=' + signPackage.appId);
+         console.log('timestamp=' + signPackage.timestamp);
+         console.log('nonceStr=' + signPackage.nonceStr);*/
+        console.log('url=' + signPackage.rawString);
+        //   console.log('signature=' + signPackage.url);
+        wx.config({
+            debug: false,
+            appId: signPackage.appId,
+            timestamp: parseInt(signPackage.timestamp),
+            nonceStr: signPackage.nonceStr,
+            signature: signPackage.signature,
+            jsApiList: [
+                'checkJsApi',
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage',
+                'onMenuShareQQ',
+                'onMenuShareWeibo',
+                'hideOptionMenu',
+                'addCard',
+                'chooseCard'
+            ]
+        });
+
+        wx.ready(function () {
+
+            wx.onMenuShareTimeline({
+                title: title, // 分享标题
+                link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                imgUrl: thumb, // 分享图标
+                success: function () {
+                    // 用户确认分享后执行的回调函数
+                },
+                cancel: function () {
+                }
+            });
+            wx.onMenuShareAppMessage({
+                title: title, // 分享标题
+                desc: desc, // 分享描述
+                link: link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                imgUrl: thumb, // 分享图标
+                type: '', // 分享类型,music、video或link，不填默认为link
+                dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                success: function () {
+                    // 用户确认分享后执行的回调函数
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+            wx.onMenuShareQQ({
+                title: title, // 分享标题
+                desc: desc, // 分享描述
+                link: link, // 分享链接
+                imgUrl: thumb, // 分享图标
+                success: function () {
+                    // 用户确认分享后执行的回调函数
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+            wx.onMenuShareWeibo({
+                title: title, // 分享标题
+                desc: desc, // 分享描述
+                link: link, // 分享链接
+                imgUrl: thumb, // 分享图标
+                success: function () {
+                    // 用户确认分享后执行的回调函数
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+            wx.onMenuShareQZone({
+                title: title, // 分享标题
+                desc: desc, // 分享描述
+                link: link, // 分享链接
+                imgUrl: thumb, // 分享图标
+                success: function () {
+                    // 用户确认分享后执行的回调函数
+                },
+                cancel: function () {
+                    // 用户取消分享后执行的回调函数
+                }
+            });
+
+
+        });
+
+
+    })
+
+
+</script>
+<div style="display:none;">
+     <script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=1278862273&web_id=1278862273"></script>
+</div>
+
+</body>
+</html>
